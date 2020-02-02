@@ -38,6 +38,7 @@ const section2 = document.querySelector("#section2");
 // console.log(`🚀: section2`, section2);
 const section3 = document.querySelector("#section3");
 // console.log(`🚀: section3`, section3);
+const section4 = document.querySelector("#section4");
 
 const scrollToTopButton = document.getElementById("scroll-to-top");
 
@@ -68,6 +69,7 @@ let section2Rect = section2.getBoundingClientRect();
 // console.log(`🚀: section2Rect`, section2Rect);
 let section3Rect = section3.getBoundingClientRect();
 // console.log(`🚀: section3Rect`, section3Rect);
+let section4Rect = section4.getBoundingClientRect();
 
 // determining top and bottom cursor positions of elements
 // ----- ===== ***** ===== -----
@@ -79,6 +81,7 @@ let section2Top = Math.floor(section2Rect.top);
 // console.log(`🚀: section2Top`, section2Top);
 let section3Top = Math.floor(section3Rect.top);
 // console.log(`🚀: section3Top`, section3Top);
+let section4Top = Math.floor(section4Rect.top);
 
 let headerBottom = Math.floor(headerRect.bottom) - 1;
 // console.log(`🚀: headerBottom`, headerBottom);
@@ -88,6 +91,7 @@ let section2Bottom = Math.floor(section2Rect.bottom) - 1;
 // console.log(`🚀: section2Bottom`, section2Bottom);
 let section3Bottom = Math.floor(section3Rect.bottom) - 1;
 // console.log(`🚀: section3Bottom`, section3Bottom);
+let section4Bottom = Math.floor(section4Rect.bottom) - 1;
 
 // ***** FUNCTIONS *****
 
@@ -133,6 +137,7 @@ let recalculateElementPositions = e => {
   // console.log(`🚀: section2Rect`, section2Rect);
   section3Rect = section3.getBoundingClientRect();
   // console.log(`🚀: section3Rect`, section3Rect);
+  section4Rect = section4.getBoundingClientRect();
 
   // determining top and bottom cursor positions of elements
   // ----- ===== ***** ===== -----
@@ -144,6 +149,7 @@ let recalculateElementPositions = e => {
   // console.log(`🚀: section2Top`, section2Top);
   section3Top = Math.floor(section3Rect.top);
   // console.log(`🚀: section3Top`, section3Top);
+  section4Top = Math.floor(section4Rect.top);
 
   headerBottom = Math.floor(headerRect.bottom) - 1;
   // console.log(`🚀: headerBottom`, headerBottom);
@@ -153,10 +159,12 @@ let recalculateElementPositions = e => {
   // console.log(`🚀: section2Bottom`, section2Bottom);
   section3Bottom = Math.floor(section3Rect.bottom) - 1;
   // console.log(`🚀: section3Bottom`, section3Bottom);
+  section4Bottom = Math.floor(section4Rect.bottom) - 1;
 
   console.log("sec1 : ", section1Top, section1Bottom);
   console.log("sec2 : ", section2Top, section2Bottom);
   console.log("sec3 : ", section3Top, section3Bottom);
+  console.log("sec4 : ", section4Top, section4Bottom);
 };
 
 // function to determine when scroll button should be made visible
@@ -220,6 +228,13 @@ let determineActiveElement = e => {
     // console.log("S3 is active");
     section3.classList.add("active-section");
     globalActiveState = [false, false, true];
+  } else if (
+    cursorPosition > section4Top - 100 &&
+    cursorPosition < section4Bottom - 100
+  ) {
+    // console.log("S4 is active");
+    section4.classList.add("active-section");
+    globalActiveState = [false, false, true];
   }
 
   reGenerateNavMenu(globalActiveState);
@@ -247,6 +262,7 @@ let reGenerateNavMenu = globalActiveState => {
 let scrollToSection1 = () => window.scrollTo(0, section1Top);
 let scrollToSection2 = () => window.scrollTo(0, section2Top);
 let scrollToSection3 = () => window.scrollTo(0, section3Top);
+let scrollToSection4 = () => window.scrollTo(0, section4Top);
 
 // functions to hide menu if no user activity
 let showMenu = () => {
@@ -327,6 +343,10 @@ second.addEventListener("click", scrollToSection2);
 let third = navbarList.querySelector("li:nth-child(3)");
 // console.log(`🚀: first`, first);
 third.addEventListener("click", scrollToSection3);
+
+let fourth = navbarList.querySelector("li:nth-child(4)");
+// console.log(`🚀: first`, first);
+fourth.addEventListener("click", scrollToSection4);
 // ----- ===== ***** ===== -----
 // ----- ===== ***** ===== -----
 // ----- ===== ***** ===== -----
