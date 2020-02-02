@@ -66,6 +66,7 @@ section {
 /* ---- Module Rules ---- */
 
 /* Navigation Styles*/
+
 .navbar__menu ul {
   padding-left: 0;
   margin: 0;
@@ -104,6 +105,11 @@ section {
   top: 0;
   width: 100%;
   z-index: 5;
+  visibility: visible;
+}
+
+.page__header.hidden {
+  visibility: hidden;
 }
 
 /* Footer Styles */

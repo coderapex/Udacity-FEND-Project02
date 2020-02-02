@@ -22,6 +22,8 @@ if (performance.navigation.type == 1) {
 // ***** DECLARATIONS *****
 // defining constants for elements
 // ----- ===== ***** ===== -----
+const navHeader = document.querySelector(".page__header");
+
 const header = document.querySelector("#page-header");
 // console.log(`🚀: header`, header);
 
@@ -245,6 +247,47 @@ let reGenerateNavMenu = globalActiveState => {
 let scrollToSection1 = () => window.scrollTo(0, section1Top);
 let scrollToSection2 = () => window.scrollTo(0, section2Top);
 let scrollToSection3 = () => window.scrollTo(0, section3Top);
+
+// functions to hide menu if no user activity
+let showMenu = () => {
+  // show main menu
+  console.log("Timer started");
+  startTimer();
+  navHeader.classList.remove("hidden");
+};
+
+let hideMenu = () => {
+  // hide main menu
+  console.log("Timer Ended");
+  navHeader.classList.add("hidden");
+};
+
+let timeOutID = 0;
+
+let startTimer = () => {
+  // wait 2 seconds before calling hideMenu
+  timeoutID = window.setTimeout(hideMenu, 5000);
+};
+
+function setupInactiveTimer() {
+  this.addEventListener("mousemove", resetTimer, false);
+  this.addEventListener("mousedown", resetTimer, false);
+  this.addEventListener("keypress", resetTimer, false);
+  this.addEventListener("DOMMouseScroll", resetTimer, false);
+  this.addEventListener("mousewheel", resetTimer, false);
+  this.addEventListener("touchmove", resetTimer, false);
+  this.addEventListener("MSPointerMove", resetTimer, false);
+
+  startTimer();
+}
+
+let resetTimer = e => {
+  window.clearTimeout(timeoutID);
+
+  showMenu();
+};
+
+setupInactiveTimer();
 
 // ***** EVENTS *****
 // event to recalculate window and document dimensions
